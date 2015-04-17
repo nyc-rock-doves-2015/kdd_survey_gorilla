@@ -28,17 +28,15 @@ end
 
 post '/signup' do
   user = User.new(params[:user])
-  # user.sav
-  if params[:user][:password] != params[:user][:password_confirmation]
-    flash[:error] = "Your passwords didn't match. Please try again."
-  elsif !user.valid?
-    flash[:error] = "That username has already been chosen. Please try again."
-  else
-    user.save
+  user.save
+  if user_params_valid?(user, params[:user])
     session[:user_id] = user.id
     redirect '/'
+  else
+    flash[:error] = user.errors.full_messages.join(" ")
+    redirect '/signup'
   end
-  redirect '/signup'
+
 end
 
 get '/logout' do

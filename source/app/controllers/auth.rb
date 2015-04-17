@@ -11,11 +11,11 @@ post '/login' do
   user = User.find_by(name: params[:name])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
+    redirect '/'
   else
     flash[:error] = "Could not find your account. Please try again."
     redirect '/login'
   end
-  redirect '/'
 end
 
 get '/signup' do
@@ -27,14 +27,13 @@ get '/signup' do
 end
 
 post '/signup' do
-  user = User.new(params[:user])
-  user.save
+  user = User.create(params[:user])
   if user_params_valid?(user, params[:user])
     session[:user_id] = user.id
     redirect '/'
   else
-    flash[:error] = user.errors.full_messages.join(" ")
-    redirect '/signup'
+    flash[:error] = user.error_generator
+    redirect '/signup' #with time, figure out how to render form with previous answers already filled in params
   end
 
 end

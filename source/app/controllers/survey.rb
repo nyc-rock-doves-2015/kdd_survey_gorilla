@@ -11,7 +11,16 @@ get '/surveys/new' do
 end
 
 post '/surveys' do
-  'create a new survey!'
+  new_survey = Survey.new(
+    title: params[:title],
+    user_id: 1#current_user.id
+    )
+
+  if new_survey.save
+    redirect "/users/#{current_user.id}"
+  else
+    [500, "Sorry, something went wrong!"]
+  end
 end
 
 get '/surveys/:id' do |id|

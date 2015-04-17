@@ -13,7 +13,7 @@ end
 post '/surveys' do
   new_survey = Survey.new(
     title: params[:title],
-    user_id: 1#current_user.id
+    user_id: current_user.id
     )
 
   if new_survey.save
@@ -22,7 +22,7 @@ post '/surveys' do
     [500, "Sorry, something went wrong!"]
   end
 end
-
+#debbie
 get '/surveys/:id' do |id|
   erb :'surveys/show'
 end

@@ -1,4 +1,5 @@
 get '/' do
+  @surveys = Survey.all
   erb :index
 end
 
@@ -22,6 +23,7 @@ post '/surveys' do
     [500, "Sorry, something went wrong!"]
   end
 end
+
 #debbie
 get '/surveys/:id' do |id|
   erb :'surveys/show'

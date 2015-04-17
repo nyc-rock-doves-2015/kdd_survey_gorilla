@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="pure-g">
   <div class="pure-u-1 intro"><h2 id="jumbo">Create Dynamic Surveys</h2><h4 id="jumbo_comment">Fast, hassle-free suvery creation in minutes</h4>
     <a class="pure-button" id="intro_button" href="#">Sign Up</a>
@@ -14,3 +15,13 @@
   <div class="pure-u-1-5 home-browse"><p>Col 1</p></div>
   <div class="pure-u-1-5 home-browse"><p>Col 2</p></div>
 </div>
+=======
+<div class = "survey_list">
+  <ul>
+    <% @surveys.each do |survey| %>
+      <li><a href="#"><%= survey.title %></a><br>
+      by <a href="#"><%= survey.user.name %></a></li>
+    <% end %>
+  </ul>
+</div>
+>>>>>>> development

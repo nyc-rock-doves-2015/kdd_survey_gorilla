@@ -1,10 +1,28 @@
 TODO LIST
 =========
 
-  [ ] user stories
-  [ ] wireframe
-  [ ] whiteboard models/tables
-  [ ] migrate database tables
-  [ ] write models
-  [ ] TEST!
-  [ ] break up dev tasks
+  [X] user stories
+  [X] wireframe
+  [X] whiteboard models/tables
+  [X] migrate database tables
+  [X] write models
+  [X] TEST!
+
+DEV TASKS
+=========
+SPEC
+  [ ] RSPEC (Dan)
+  [ ] JASMINE
+
+SINATRA
+  [ ] Controllers (Dan/Debbie)
+  [ ] Views (Dan/Debbie)
+  [ ] User Authentication (Debbie)
+
+USER INTERACTION
+  [ ] CSS for layout (Kenny)
+  [ ] AJAX calls (???)
+
+
+
+

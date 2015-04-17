@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  # Remember to create a migration!
+  has_many :authored_surveys, class_name: "Survey"
+  has_many :survey_users
+  has_many :taken_surveys, through: :survey_users, source: :survey
 end

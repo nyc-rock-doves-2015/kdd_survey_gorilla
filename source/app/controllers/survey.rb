@@ -8,9 +8,7 @@ get '/surveys' do
 end
 
 get '/surveys/new' do
-
   erb :'surveys/new'
->>>>>>> development
 end
 
 post '/surveys' do

@@ -15,7 +15,7 @@ gem 'bcrypt-ruby'
 gem 'rake'
 
 gem 'shotgun'
-
+gem 'sinatra-flash'
 
 group :test, :development do
   gem 'factory_girl'

@@ -21,6 +21,7 @@
 <div id="content">
   <header>
   </header>
+  <%= flash[:error] if flash[:error] %>
   <%= yield %>
 </div>
 </body>

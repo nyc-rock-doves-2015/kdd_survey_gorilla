@@ -1,4 +1,5 @@
 get '/' do
+  @surveys = Survey.all
   erb :index
 end
 
@@ -6,30 +7,30 @@ get '/surveys' do
   redirect '/'
 end
 
-get '/surveys/new'
+get '/surveys/new' do
 
 end
 
-post '/surveys'
+post '/surveys' do
 
 end
 
-get '/surveys/:id' |id|
+get '/surveys/:id' do |id|
 
 end
 
-get '/surveys/:id/edit' |id|
+get '/surveys/:id/edit' do |id|
 
 end
 
-put '/surveys/:id' |id|
+put '/surveys/:id' do |id|
 
 end
 
-delete '/surveys/:id' |id|
+delete '/surveys/:id' do |id|
 
 end
 
-get '/surveys/:id/stats' |id|
+get '/surveys/:id/stats' do |id|
 
 end

@@ -1,1 +1,8 @@
-Welcome to my site!
+<div class = "survey_list">
+  <ul>
+    <% @surveys.each do |survey| %>
+      <li><a href="#"><%= survey.title %></a><br>
+      by <a href="#"><%= survey.user.name %></a></li>
+    <% end %>
+  </ul>
+</div>

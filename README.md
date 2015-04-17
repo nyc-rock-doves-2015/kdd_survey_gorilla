@@ -11,3 +11,6 @@ Survey-Monkey-esque JS/Sinatra CRUD site
 * I want to be able to see all the surveys I've taken
 * I want to see all the surveys that everyone has made
 
+## wireframe
+![wireframe](wireframe.png)
+

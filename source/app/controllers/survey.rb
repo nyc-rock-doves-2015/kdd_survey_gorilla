@@ -36,7 +36,9 @@ put '/surveys/:id' do |id|
 end
 
 delete '/surveys/:id' do |id|
-  'delete the survey!!'
+  survey_to_delete = Survey.find(id)
+  survey_to_delete.destroy
+  redirect "/users/#{current_user.id}"
 end
 
 get '/surveys/:id/stats' do |id|

@@ -10,7 +10,7 @@
 }
 
 .footer {
-   background-color: #6A6AFF;
+ background-color: #6A6AFF;
 }
 
 #jumbo {
@@ -45,6 +45,23 @@
 
 
 .home-browse {
-    margin-left: 25%;
+    margin-left: 20%;
     padding-bottom: 500px;
+}
+
+.display-survey {
+    text-align: center;
+    border: 1px solid black;
+    padding-top: 70px;
+    margin: 20px;
+    list-style-type: none;
+    display: inline-block;
+    height: 150px;
+    width: 500px;
+    margin-left: 140px;
+    background-color: white;
+}
+
+body {
+    background-color: #FAFAFA;
 }

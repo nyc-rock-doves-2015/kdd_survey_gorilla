@@ -9,6 +9,7 @@ end
 
 get '/surveys/new' do
 
+  erb :'surveys/single'
 end
 
 post '/surveys' do

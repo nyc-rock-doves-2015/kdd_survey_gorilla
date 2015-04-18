@@ -7,6 +7,6 @@ def current_user
 end
 
 def user_params_valid?(user, user_params)
-  user_params[:password] == user_params[:password_confirmation] && user.valid
+  user_params[:password] == user_params[:password_confirmation] && user.valid?
 end
 

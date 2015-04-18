@@ -7,7 +7,11 @@ class Option < ActiveRecord::Base
   end
 
   def percentage_answered(num_of_takers)
-    ((num_of_answers / num_of_takers) * 100).round
+    if num_of_takers == 0
+      return 0
+    else
+      ((num_of_answers / num_of_takers) * 100).round
+    end
   end
 
 end

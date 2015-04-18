@@ -44,5 +44,6 @@ delete '/surveys/:id' do |id|
 end
 
 get '/surveys/:id/stats' do |id|
-  erb :'surveys/stats'
+  @survey = Survey.find(id)
+  erb :'surveys/_stats'
 end

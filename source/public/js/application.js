@@ -16,7 +16,15 @@ $(document).ready(function() {
     });
   });
 
-  // $("#new_option_button").on('click', function(){
-  //   var
-  // });
+  $("#new_survey").on('click', '#new_option_button', function(event){
+    // console.log($(event.target));
+    $.ajax({
+      url: '/options/new',
+      type: 'GET'
+    }).done(function(response){
+      // console.log(response);
+      var $closestQuestion = $('.new_option').closest('.new_question').last();
+      $closestQuestion.append(response);
+    });
+  });
 });

@@ -1,0 +1,5 @@
+<ul>
+  <% user.authored_surveys.each do |survey| %>
+  <li><a href="/surveys/<%= survey.id %>"><%= survey.title %></a> | <a href="/surveys/<%= survey.id %>/stats">stats</a></li>
+  <% end %>
+</ul>

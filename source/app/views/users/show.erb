@@ -1,16 +1,14 @@
-<div id="user_dashboard">
-  <h1><%= @user.name %></h1>
-  <h2>Surveys You've Written</h2>
-    <ul>
-    <% @user.authored_surveys.each do |survey| %>
+<h1>User: <%= @user.name %></h1>
+<div class="pure-g">
+  <div class="pure-u-1-2">
+    <h2>Surveys You've Written</h2>
+     <%= erb :'users/_authored_surveys', locals: { user: @user } %>
+  </div>
+  <div class="pure-u-1-2">
+    <h2>Surveys You've Taken</h2>
+      <ul>
+      <% @user.taken_surveys.each do |survey| %>
       <li><%= survey.title %></li>
-    <% end %>
+      <% end %>
     </ul>
-  <h2>Surveys You've Taken</h2>
-    <ul>
-    <% @user.taken_surveys.each do |survey| %>
-      <li><%= survey.title %></li>
-    <% end %>
-    </ul>
-  <a href="#">See Your Stats</a>
-</div>
+  </div>

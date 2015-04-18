@@ -1,5 +1,4 @@
 enable :sessions
-
 get '/login' do
   if current_user
     redirect '/'
@@ -12,11 +11,11 @@ post '/login' do
   user = User.find_by(name: params[:name])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
+    redirect '/'
   else
     flash[:error] = "Could not find your account. Please try again."
     redirect '/login'
   end
-  redirect '/'
 end
 
 get '/signup' do
@@ -28,19 +27,15 @@ get '/signup' do
 end
 
 post '/signup' do
-  user = User.new(params[:user])
-  if empty_sign_up_field?(params[:user])
-    flash[:error] = "You need a username and a password to sign up. Please try again."
-  elsif params[:user][:password] != params[:user][:password_confirmation]
-    flash[:error] = "Your passwords didn't match. Please try again."
-  elsif !user.valid?
-    flash[:error] = "That username has already been chosen. Please try again."
-  else
-    user.save
+  user = User.create(params[:user])
+  if user_params_valid?(user, params[:user])
     session[:user_id] = user.id
     redirect '/'
+  else
+    flash[:error] = user.error_generator
+    redirect '/signup' #with time, figure out how to render form with previous answers already filled in params
   end
-  redirect '/signup'
+
 end
 
 get '/logout' do

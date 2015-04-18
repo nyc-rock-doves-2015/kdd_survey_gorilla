@@ -38,7 +38,7 @@ get '/surveys/:id' do |id|
   end
 end
 
-#If a user doesn't fill out a question, make an error not through
+
 post '/surveys/:id' do |id|
   survey = Survey.find(id)
   surveyuser = SurveyUser.create(survey_id: survey.id, user_id: current_user.id)
@@ -46,7 +46,9 @@ post '/surveys/:id' do |id|
     count = 1
     survey.questions.each do |question|
       option = Option.find_by(content: params[count.to_s.to_sym], question_id: question.id)
-      Answer.create(option_id: option.id, user_id: current_user.id)
+      if !option.nil?
+        Answer.create(option_id: option.id, user_id: current_user.id)
+      end
       count +=1
     end
   else

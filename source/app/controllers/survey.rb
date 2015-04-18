@@ -25,20 +25,30 @@ post '/surveys' do
 end
 
 #debbie
+
 get '/surveys/:id' do |id|
-  @survey = Survey.find(id)
-  @questions = @survey.questions
-  erb :'surveys/show'
+  if current_user
+    @survey = Survey.find(id)
+    @questions = @survey.questions
+    erb :'surveys/show'
+  else
+    flash[:error] = "Please login in to take a survey."
+    redirect '/login'
+  end
 end
 
 post '/surveys/:id' do |id|
   survey = Survey.find(id)
-  current_user.taken_surveys << survey
-  count = 1
-  survey.questions.each do |question|
-    option = Option.find_by(content: params[count.to_s.to_sym], question_id: question.id)
-    Answer.create(option_id: option.id, user_id: current_user.id)
-    count +=1
+  surveyuser = SurveyUser.create(survey_id: survey.id, user_id: current_user.id)
+  if surveyuser.valid?
+    count = 1
+    survey.questions.each do |question|
+      option = Option.find_by(content: params[count.to_s.to_sym], question_id: question.id)
+      Answer.create(option_id: option.id, user_id: current_user.id)
+      count +=1
+    end
+  else
+    flash[:error] = "Sorry, you've already taken this survey."
   end
   redirect :'/'
 end

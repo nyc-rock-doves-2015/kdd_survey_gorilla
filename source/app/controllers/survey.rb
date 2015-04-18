@@ -32,6 +32,16 @@ get '/surveys/:id' do |id|
 end
 
 post '/surveys/:id' do |id|
+  survey = Survey.find(id)
+  questions = survey.questions
+  current_user.taken_surveys << survey
+  count = 1
+  survey.questions.count.times do
+    option = Option.find_by(content: params[count.to_s.to_sym])
+    Answer.create(option_id: option.id, user_id: current_user.id)
+    count += 1
+  end
+  redirect :'/'
 end
 
 get '/surveys/:id/edit' do |id|

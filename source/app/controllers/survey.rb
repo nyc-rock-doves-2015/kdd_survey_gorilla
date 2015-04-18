@@ -28,13 +28,15 @@ end
 #debbie
 
 get '/surveys/:id' do |id|
-  if current_user
-    @survey = Survey.find(id)
+  bounce_guest!
+  @survey = Survey.find(id)
+  surveyuser = SurveyUser.find_by(survey_id: @survey.id, user_id: current_user.id)
+  if surveyuser.nil?
     @questions = @survey.questions
     erb :'surveys/show'
   else
-    flash[:error] = "Please login in to take a survey."
-    redirect '/login'
+    flash[:error] = "Sorry, you've already taken this survey."
+    redirect profile_url(current_user)
   end
 end
 
@@ -42,15 +44,11 @@ end
 post '/surveys/:id' do |id|
   survey = Survey.find(id)
   surveyuser = SurveyUser.create(survey_id: survey.id, user_id: current_user.id)
-  if surveyuser.valid?
-    count = 1
-    survey.questions.each do |question|
-      count_sym = count.to_s.to_sym
-      question.mark_answer(params[count_sym], current_user)
-      count +=1
-    end
-  else
-    flash[:error] = "Sorry, you've already taken this survey."
+  count = 1
+  survey.questions.each do |question|
+    count_sym = count.to_s.to_sym
+    question.mark_answer(params[count_sym], current_user)
+    count +=1
   end
   redirect profile_url(current_user)
 end

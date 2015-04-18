@@ -20,7 +20,8 @@ post '/surveys' do
   if new_survey.save
     redirect "/users/#{current_user.id}"
   else
-    [500, "Sorry, something went wrong!"]
+    flash[:error] = "Survey did not save!"
+    redirect '/surveys/new'
   end
 end
 
@@ -37,6 +38,7 @@ get '/surveys/:id' do |id|
   end
 end
 
+#If a user doesn't fill out a question, make an error not through
 post '/surveys/:id' do |id|
   survey = Survey.find(id)
   surveyuser = SurveyUser.create(survey_id: survey.id, user_id: current_user.id)

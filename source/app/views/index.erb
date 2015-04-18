@@ -16,7 +16,7 @@
       <ul>
       <% @surveys.each do |survey| %>
       <li class="display-survey">Survey: <a href="#"><%= survey.title %></a><br>
-        Created By: <a href="#"><%= survey.user.name %></a></li>
+        Created By: <a href="<%= profile_url(survey.user) %>"><%= survey.user.name %></a></li>
         <% end %>
       </ul>
       </div>

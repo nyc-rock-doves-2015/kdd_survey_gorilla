@@ -45,10 +45,8 @@ post '/surveys/:id' do |id|
   if surveyuser.valid?
     count = 1
     survey.questions.each do |question|
-      option = Option.find_by(content: params[count.to_s.to_sym], question_id: question.id)
-      if !option.nil?
-        Answer.create(option_id: option.id, user_id: current_user.id)
-      end
+      count_sym = count.to_s.to_sym
+      question.mark_answer(params[count_sym], current_user)
       count +=1
     end
   else

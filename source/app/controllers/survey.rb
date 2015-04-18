@@ -33,13 +33,12 @@ end
 
 post '/surveys/:id' do |id|
   survey = Survey.find(id)
-  questions = survey.questions
   current_user.taken_surveys << survey
   count = 1
-  survey.questions.count.times do
-    option = Option.find_by(content: params[count.to_s.to_sym])
+  survey.questions.each do |question|
+    option = Option.find_by(content: params[count.to_s.to_sym], question_id: question.id)
     Answer.create(option_id: option.id, user_id: current_user.id)
-    count += 1
+    count +=1
   end
   redirect :'/'
 end

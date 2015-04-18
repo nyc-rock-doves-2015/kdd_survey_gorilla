@@ -1,10 +1,12 @@
-<%= @survey.title  %>
+
+<div class="show-form">
+<h2> <%= @survey.title  %> </h2>
 
 <form action = "<%= survey_url(@survey) %>" method = "POST">
   <ol>
     <% count = 1 %>
     <% @questions.each do |question|%>
-      <li><p><%= question.content %></p>
+      <li><h4><%= question.content %>?</h4>
       <% question.options.each do |option|%>
         <p><input type = "radio" name = "<%= count %>" value = "<%= option.content %>"  ><%= option.content %></p>
       <% end %>
@@ -13,4 +15,4 @@
   </ol>
   <input type= 'submit'>
 </form>
-
+</div>

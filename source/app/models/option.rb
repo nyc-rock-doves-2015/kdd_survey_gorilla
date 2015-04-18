@@ -13,4 +13,5 @@ class Option < ActiveRecord::Base
       ((num_of_answers / num_of_takers) * 100).round
     end
   end
+
 end

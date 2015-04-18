@@ -1,9 +1,19 @@
 .pure-menu {
     padding-top: 10px;
+    background-color: black;
+    padding-bottom: 10px;
+}
+
+.pure-menu a {
+    color: white;
+}
+
+.pure-menu a:hover {
+    color: black;
 }
 
 .intro {
-    padding-top: 10px;
+    padding-top: 20px;
     background-color: #6A6AFF;
     color: white;
     padding-bottom: 100px;
@@ -122,8 +132,10 @@ body {
     border: 1px solid black;
     background-color: white;
     margin-left: 250px;
-    margin-right: 250px;
+    margin-right: 220px;
     padding: 20px;
+    position: fixed;
+    margin-top: 30px;
 
 }
 
@@ -131,8 +143,9 @@ body {
     border: 1px solid black;
     background-color: white;
     margin-right: 250px;
-    margin-left: 250px;
+    margin-left: 220px;
     padding: 20px;
+    position: fixed;
 
 }
 
@@ -148,3 +161,4 @@ body {
 .user-profile a {
     text-decoration: none;
 }
+

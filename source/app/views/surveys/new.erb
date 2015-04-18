@@ -1,10 +1,9 @@
 <div id="new_survey">
   <form action="/surveys" method="POST">
     <input type="text" name="title" placeholder="title" required>
-    <div id="question_wrapper">
-      <%= erb :"surveys/_new_question" %>
-      <input id="new_question_button" type="button" value="add question">
-    </div>
+      <% count = 0 %>
+      <%= erb :"surveys/_new_question", locals: {count: count} %>
+      <input id="new_question_button" type="button" value="add question" >
     <input type="submit" value="create">
   </form>
 </div>

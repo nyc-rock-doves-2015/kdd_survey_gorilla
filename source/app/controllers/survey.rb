@@ -12,7 +12,10 @@ get '/surveys/new' do
 end
 
 post '/surveys' do
-  new_survey = Survey.new(
+  if request.xhr?
+    erb :'surveys/_new_question', layout: false
+  else
+     new_survey = Survey.new(
     title: params[:title],
     user_id: current_user.id
     )
@@ -27,6 +30,9 @@ post '/surveys' do
     flash[:error] = "Survey did not save!"
     redirect '/surveys/new'
   end
+
+  end
+
 end
 
 #debbie

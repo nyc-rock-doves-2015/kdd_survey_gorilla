@@ -3,9 +3,7 @@ $(document).ready(function() {
   //  ("<input type='text' name='" + name + "' placeholder='question'>");
   // });
   var count = 0
-
-    $("#new_question_button").on('click', function(event){
-    var $event = $(event.target);
+  $("#new_question_button").on('click', function(){
     $.ajax({
       url: '/surveys',
       type: 'POST'
@@ -13,8 +11,12 @@ $(document).ready(function() {
       var $response = $(response);
       count ++;
       $response.children()[0].name = "question[" + count + "]";
-       $('.new_question').last().append($response)
+      $('.new_question').last().append($response)
       // console.log(response)
-    })
-  })
+    });
+  });
+
+  // $("#new_option_button").on('click', function(){
+  //   var
+  // });
 });

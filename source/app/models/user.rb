@@ -6,4 +6,9 @@ class User < ActiveRecord::Base
   has_many :survey_users
   has_many :taken_surveys, through: :survey_users, source: :survey
   has_many :answers
+
+  def error_generator
+    self.errors.full_messages.join(" ")
+  end
+
 end

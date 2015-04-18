@@ -6,9 +6,7 @@ def current_user
   end
 end
 
-def empty_sign_up_field?(user_params)
-  user_params.each_value do |param|
-    return true if param == ""
-  end
-  return false
+def user_params_valid?(user, user_params)
+  user_params[:password] == user_params[:password_confirmation] && user.valid
 end
+

@@ -26,7 +26,12 @@ end
 
 #debbie
 get '/surveys/:id' do |id|
+  @survey = Survey.find(id)
+  @questions = @survey.questions
   erb :'surveys/show'
+end
+
+post '/surveys/:id' do |id|
 end
 
 get '/surveys/:id/edit' do |id|

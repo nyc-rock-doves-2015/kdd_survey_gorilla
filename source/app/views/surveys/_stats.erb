@@ -1,0 +1,15 @@
+<div id='stats'>
+  <h1><%= @survey.title %></h1>
+    <p><%=@survey.users.count %> people have taken this survey.</p>
+  <ol>
+    <h3>Questions</h3>
+    <% @survey.questions.each do |question| %>
+      <li><%= question.content %></li>
+        <ul>
+          <% question.options.each do |option| %>
+          <li><%= option.content %> <%= option.percentage_answered(@survey.users.count)%>% answered this</li>
+          <% end %>
+        </ul>
+    <% end %>
+  </ol>
+</div>

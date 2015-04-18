@@ -16,8 +16,12 @@ post '/surveys' do
     title: params[:title],
     user_id: current_user.id
     )
-
   if new_survey.save
+    params[:question].each_value do |question_content|
+      if question_content != ""
+        new_survey.questions.create(content: question_content)
+      end
+    end
     redirect profile_url(current_user)
   else
     flash[:error] = "Survey did not save!"

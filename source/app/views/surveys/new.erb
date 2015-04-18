@@ -2,8 +2,8 @@
   <form action="/surveys" method="POST">
     <input type="text" name="title" placeholder="title" required>
     <div id="question_wrapper">
-      <%= erb :'surveys/_new_question' %>
-      <input id="new_question_button" type="submit" value="add question">
+      <%= erb :"surveys/_new_question" %>
+      <input id="new_question_button" type="button" value="add question">
     </div>
     <input type="submit" value="create">
   </form>

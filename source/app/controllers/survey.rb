@@ -18,7 +18,7 @@ post '/surveys' do
     )
 
   if new_survey.save
-    redirect "/users/#{current_user.id}"
+    redirect profile_url(current_user)
   else
     flash[:error] = "Survey did not save!"
     redirect '/surveys/new'
@@ -52,7 +52,7 @@ post '/surveys/:id' do |id|
   else
     flash[:error] = "Sorry, you've already taken this survey."
   end
-  redirect :'/'
+  redirect profile_url(current_user)
 end
 
 get '/surveys/:id/edit' do |id|
@@ -66,7 +66,7 @@ end
 delete '/surveys/:id' do |id|
   survey_to_delete = Survey.find(id)
   survey_to_delete.destroy
-  redirect "/users/#{current_user.id}"
+  redirect profile_url(current_user)
 end
 
 get '/surveys/:id/stats' do |id|

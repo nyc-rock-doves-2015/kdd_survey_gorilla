@@ -25,6 +25,12 @@ post '/surveys' do
           new_survey.questions.create(content: question_content)
         end
       end
+      question = new_survey.questions.first
+      params[:option].each_value do |option_content|
+        if option_content != ""
+          question.options.create(content: option_content)
+        end
+      end
       redirect profile_url(current_user)
     else
       flash[:error] = "Survey did not save!"

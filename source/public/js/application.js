@@ -23,9 +23,10 @@ $(document).ready(function() {
       var $target = $(event.target);
       var $response = $(response);
       count ++;
-      var $closestOption = $target.parents('.new_question').find('.new_option').last()
-      $closestOption.children()[0].name = "option[" + count + "]";
-      $response.insertBefore($closestOption);
+      var $closestOptionWrapper = $target.parents('.new_question').find('.new_option_wrapper')
+    //   $closestOption.children()[0].name = "option[" + count + "]";
+    $closestOptionWrapper.append($response);
+    //   $response.insertBefore($closestOption);
     });
   });
 });

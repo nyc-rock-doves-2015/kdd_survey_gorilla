@@ -25,8 +25,8 @@ $(document).ready(function() {
       option_counter ++;
       var $closestOptionWrapper = $target.parents('.new_question').find('.new_option_wrapper')
       var $closestQuestionNameStr = $target.parents('.new_question').children()[0].name
-      $response[0].name = $closestQuestionNameStr + "[" + option_counter + "]";
-      // $response[0].name = "option[" + option_counter + "]"
+      // $response[0].name = $closestQuestionNameStr + "[" + option_counter + "]";
+      $response.children()[0].name = "option[" + option_counter + "]"
       $closestOptionWrapper.append($response);
     });
   });

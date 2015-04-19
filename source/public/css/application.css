@@ -162,3 +162,18 @@ body {
     text-decoration: none;
 }
 
+#new_survey {
+    border: 1px solid black;
+    margin-left: 50px;
+    margin-top: 30px;
+    position: fixed;
+    padding: 25px;
+    background-color: white;
+    padding-right: 150px;
+
+}
+
+#new {
+    text-align: center;
+    margin-top: 20px;
+}

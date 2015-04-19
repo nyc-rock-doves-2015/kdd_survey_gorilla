@@ -11,10 +11,11 @@ $(document).ready(function() {
       $target = $(event.target);
       console.log($target);
       var $response = $(response);
-      count ++;
-      $response.children()[0].name = "question[" + count + "]";
-      var $closestQuestion = $target.parent().find('.new_question');
-      $response.appendTo('#new_survey')
+      $response.insertBefore('#new_question_button');
+      // count ++;
+      // $response.children()[0].name = "question[" + count + "]";
+      // var $closestQuestion = $target.parent().find('.new_question');
+      // $response.appendTo('#new_survey')
     });
   });
 

@@ -15,22 +15,21 @@ post '/surveys' do
   if request.xhr?
     erb :'surveys/_new_question', layout: false
   else
-     new_survey = Survey.new(
-    title: params[:title],
-    user_id: current_user.id
-    )
-  if new_survey.save
-    params[:question].each_value do |question_content|
-      if question_content != ""
-        new_survey.questions.create(content: question_content)
+    new_survey = Survey.new(
+      title: params[:title],
+      user_id: current_user.id
+      )
+    if new_survey.save
+      params[:question].each_value do |question_content|
+        if question_content != ""
+          new_survey.questions.create(content: question_content)
+        end
       end
+      redirect profile_url(current_user)
+    else
+      flash[:error] = "Survey did not save!"
+      redirect '/surveys/new'
     end
-    redirect profile_url(current_user)
-  else
-    flash[:error] = "Survey did not save!"
-    redirect '/surveys/new'
-  end
-
   end
 
 end

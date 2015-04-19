@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var count = 0
-  $("#new_survey").on('click', '#new_question_button', function(event){
+  $('#new_survey').on('click', '#new_question_button', function(event){
     $.ajax({
       url: '/surveys',
       type: 'POST'
@@ -14,20 +14,18 @@ $(document).ready(function() {
     });
   });
 
-  // $(".new_question").on('click', function(event){
-  //   // console.log('you clicked it');
-  //   $.ajax({
-  //     url: '/options/new',
-  //     type: 'GET'
-  //   }).done(function(response){
-  //     var $target = $(event.target);
-  //     // console.log('hi');
-  //     //add response to new_question div that contained the target
-  //     var $closestQuestion = $target.closest('.new_question');
-  //     $closestQuestion.append('hi');
-  //     // $closestQuestion.append(response);
-  //     // var $closestOptionButton =
-  //     // $closestQuestion.before('.new_option_button', response);
-  //   });
-  // });
+  var count = 0
+  $('#new_survey').on('click', '.new_option_button', function(event){
+    $.ajax({
+      url: '/options/new',
+      type: 'GET'
+    }).done(function(response){
+      var $target = $(event.target);
+      var $response = $(response);
+      count ++;
+      var $closestOption = $target.parents('.new_question').find('.new_option').last()
+      $closestOption.children()[0].name = "option[" + count + "]";
+      $response.insertBefore($closestOption);
+    });
+  });
 });

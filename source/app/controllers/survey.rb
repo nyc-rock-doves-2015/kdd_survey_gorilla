@@ -21,11 +21,12 @@ post '/surveys' do
       )
     if new_survey.save
       params[:question].each_value do |question_content|
+        # ILUVU: unless question_content.empty?
         if question_content != ""
           new_survey.questions.create(content: question_content)
         end
       end
-      question = new_survey.questions.first
+      question = new_survey.questions.first # ILUVU: Won't this add every option to the first question of the survey? Does that seem like a problem?
       params[:option].each_value do |option_content|
         if option_content != ""
           question.options.create(content: option_content)
@@ -45,6 +46,8 @@ end
 
 get '/surveys/:id' do |id|
   bounce_guest!
+
+  # ILUVU: should @survey go inside of the if block, since we don't need it unless we find the SurveyUser?
   @survey = Survey.find(id)
   surveyuser = SurveyUser.find_by(survey_id: @survey.id, user_id: current_user.id)
   if surveyuser.nil?
@@ -61,8 +64,8 @@ post '/surveys/:id' do |id|
   survey = Survey.find(id)
   surveyuser = SurveyUser.create(survey_id: survey.id, user_id: current_user.id)
   count = 1
-  survey.questions.each do |question|
-    count_sym = count.to_s.to_sym
+  survey.questions.each do |question| # ILUVU: Maybe an each_with_index?
+    count_sym = count.to_s.to_sym # ILUVU: Does this really need to take the form of a symbol?
     question.mark_answer(params[count_sym], current_user)
     count +=1
   end

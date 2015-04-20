@@ -7,6 +7,7 @@
     <% count = 1 %>
     <% @questions.each do |question|%>
       <li><h4><%= question.content %>?</h4>
+      <!-- ILUVU: Maybe an each_with_index here too -->
       <% question.options.each do |option|%>
         <p><input type = "radio" name = "<%= count %>" value = "<%= option.content %>"  ><%= option.content %></p>
       <% end %>
